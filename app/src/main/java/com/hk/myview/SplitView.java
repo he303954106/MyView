@@ -19,7 +19,7 @@ import java.util.List;
  * 粒子效果
  * Created by hk on 2019/6/9.
  */
-public class SplitVIew extends View {
+public class SplitView extends View {
 
     private Paint mPaint;
     private Bitmap mBitmap;
@@ -27,22 +27,24 @@ public class SplitVIew extends View {
     private List<Ball> mBalls = new ArrayList<>();
     private ValueAnimator mAnimator;
 
-    public SplitVIew(Context context) {
+    public SplitView(Context context) {
         this(context, null);
     }
 
-    public SplitVIew(Context context, @Nullable AttributeSet attrs) {
+    public SplitView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public SplitVIew(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public SplitView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
 
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_avatar);
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 4;
+        mBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_avatar, options);
 
         for (int i = 0; i < mBitmap.getWidth(); i++) {
             for (int j = 0; j < mBitmap.getHeight(); j++) {
@@ -98,7 +100,7 @@ public class SplitVIew extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        canvas.translate(300,300);
+        canvas.translate(getWidth() / 2 - mBitmap.getWidth(), getHeight() / 2 - mBitmap.getHeight());
         for (Ball ball : mBalls) {
             mPaint.setColor(ball.color);
             canvas.drawCircle(ball.x, ball.y, ball.r, mPaint);
