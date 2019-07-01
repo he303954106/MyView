@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PassWordEditText">
+        <attr name="bound_line_color" format="color"/>
+        <attr name="parting_line_color" format="color"/>
+        <attr name="point_color" format="color"/>
+    </declare-styleable>
+</resources>
